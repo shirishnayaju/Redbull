@@ -1,0 +1,482 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--primary);
+  padding: 80px 0;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.hero-title-wrapper {
+  overflow: hidden;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.hero-title .highlight {
+  font-size: clamp(4.5rem, 11vw, 9rem);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  opacity: 0.7;
+  line-height: 1.8;
+}
+
+.hero-tagline {
+  display: block;
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  opacity: 0.5;
+  margin-top: 4px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.hero-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  will-change: transform;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(30, 144, 255, 0.15);
+  cursor: pointer;
+}
+
+.hero-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-video-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.1), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sound Control Button */
+.hero-sound-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+}
+
+.hero-sound-btn.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-sound-btn:hover {
+  background: rgba(30, 144, 255, 0.2);
+  border-color: rgb(253, 4, 4);
+  transform: scale(1.05);
+}
+
+.hero-sound-btn:active {
+  transform: scale(0.95);
+}
+
+.sound-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.sound-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Volume Control */
+.hero-volume-control {
+  position: absolute;
+  bottom: 80px;
+  right: 30px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-volume-control.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-video:hover .hero-volume-control {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.volume-track {
+  width: 4px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.volume-track:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.volume-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to top, #1e90ff, #f40000);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.volume-percentage {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  text-align: center;
+  min-width: 30px;
+}
+
+/* Show controls on hover */
+.hero-video:hover .hero-sound-btn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.4;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.scroll-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: var(--accent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%, 100% { height: 0; }
+  50% { height: 100%; }
+}
+
+/* ============================================
+   TABLET OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+    padding: 0 40px;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+  
+  .hero-video {
+    max-width: 400px;
+  }
+  
+  .hero {
+    padding: 60px 0;
+  }
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS - BIGGER VIDEO
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 30px 0;
+    min-height: 100vh;
+  }
+  
+  .hero-content {
+    padding: 0 20px;
+    gap: 25px;
+  }
+  
+  .hero-text {
+    gap: 12px;
+  }
+  
+  .hero-title {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+  
+  .hero-title .highlight {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
+  }
+  
+  .hero-tagline {
+    font-size: 0.8rem;
+  }
+  
+  .hero-cta {
+    gap: 12px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hero-cta .btn-primary,
+  .hero-cta .btn-secondary {
+    width: auto;
+    min-width: 150px;
+    padding: 12px 28px;
+    font-size: 0.85rem;
+  }
+  
+  /* BIGGER VIDEO ON MOBILE */
+  .hero-video {
+    max-width: 90vw;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+  }
+  
+  .hero-image-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .hero-sound-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+  }
+  
+  .sound-text {
+    font-size: 0.7rem;
+  }
+  
+  .sound-icon {
+    font-size: 1.1rem;
+  }
+  
+  .hero-volume-control {
+    bottom: 70px;
+    right: 25px;
+  }
+  
+  .volume-track {
+    height: 60px;
+  }
+  
+  .hero-scroll-indicator {
+    bottom: 20px;
+    gap: 8px;
+    font-size: 0.65rem;
+  }
+  
+  .scroll-line {
+    height: 30px;
+  }
+  
+  .hero-bg-glow {
+    width: 400px;
+    height: 400px;
+    top: -20%;
+    right: -30%;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 20px 0;
+    min-height: 80vh;
+  }
+  
+  .hero-content {
+    padding: 0 16px;
+    gap: 20px;
+  }
+  
+  .hero-text {
+    gap: 10px;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+  
+  .hero-title .highlight {
+    font-size: clamp(3rem, 12vw, 4rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .hero-tagline {
+    font-size: 0.7rem;
+  }
+  
+  .hero-cta .btn-primary,
+  .hero-cta .btn-secondary {
+    min-width: 120px;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+  
+  /* EVEN BIGGER VIDEO ON SMALL MOBILE */
+  .hero-video {
+    max-width: 95vw;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(30, 144, 255, 0.12);
+  }
+  
+  .hero-sound-btn {
+    bottom: 12px;
+    right: 12px;
+    padding: 8px 14px;
+  }
+  
+  .sound-text {
+    display: none;
+  }
+  
+  .sound-icon {
+    font-size: 1.2rem;
+  }
+  
+  .hero-volume-control {
+    bottom: 60px;
+    right: 20px;
+  }
+  
+  .volume-track {
+    height: 50px;
+  }
+  
+  .volume-percentage {
+    font-size: 0.5rem;
+    min-width: 24px;
+  }
+  
+  .hero-scroll-indicator {
+    bottom: 15px;
+    font-size: 0.55rem;
+    gap: 6px;
+  }
+  
+  .scroll-line {
+    height: 20px;
+  }
+  
+  .hero-bg-glow {
+    width: 300px;
+    height: 300px;
+    top: -15%;
+    right: -40%;
+  }
+}

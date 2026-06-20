@@ -1,0 +1,204 @@
+.gallery {
+  background: var(--primary);
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+.gallery-item.square {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay span {
+  padding: 12px 32px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 60px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay span {
+  transform: scale(1);
+}
+
+/* ============================================
+   TABLET OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 16px;
+  }
+  
+  .gallery-item.tall {
+    grid-row: span 2;
+  }
+  
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS - PC LAYOUT
+   ============================================ */
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 40px 0;
+  }
+  
+  .gallery-header {
+    margin-bottom: 30px;
+  }
+  
+  /* Keep the PC grid layout on mobile */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 12px;
+  }
+  
+  /* Maintain the tall and wide sizes */
+  .gallery-item.tall {
+    grid-row: span 2;
+  }
+  
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+  
+  .gallery-item.square {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+  
+  .gallery-item {
+    border-radius: 14px;
+  }
+  
+  .gallery-overlay span {
+    padding: 8px 20px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: 30px 0;
+  }
+  
+  .gallery-header {
+    margin-bottom: 20px;
+  }
+  
+  /* Keep the PC grid layout on small mobile */
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 140px;
+    gap: 8px;
+  }
+  
+  /* Maintain the tall and wide sizes */
+  .gallery-item.tall {
+    grid-row: span 2;
+  }
+  
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+  
+  .gallery-item.square {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+  
+  .gallery-item {
+    border-radius: 10px;
+  }
+  
+  .gallery-overlay span {
+    padding: 6px 14px;
+    font-size: 0.65rem;
+    border-radius: 40px;
+  }
+}
+
+/* ============================================
+   VERY SMALL MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 380px) {
+  .gallery-grid {
+    grid-auto-rows: 120px;
+    gap: 6px;
+  }
+  
+  .gallery-overlay span {
+    padding: 4px 12px;
+    font-size: 0.55rem;
+    border-radius: 30px;
+  }
+}

@@ -1,0 +1,325 @@
+.features {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.03), transparent 70%);
+  pointer-events: none;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* BIGGER "The Science Behind" label */
+.features-header .section-label {
+  font-size: 1.1rem;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+/* BIGGER heading */
+.features-header .section-title {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  margin-bottom: 20px;
+}
+
+.features-header .section-subtitle {
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 1.15rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card {
+  padding: 35px 30px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.05), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(30, 144, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* BIGGER icon wrapper */
+.feature-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(2, 185, 247, 0.993), rgb(241, 218, 210));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  font-size: 2.4rem;
+  border: 1px solid rgba(30, 144, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  background: linear-gradient(135deg, rgb(249, 2, 2), rgba(2, 124, 245, 0.944));
+  border-color: rgb(2, 218, 251);
+  transform: scale(1.05);
+}
+
+/* BIGGER title */
+.feature-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+/* BIGGER description */
+.feature-description {
+  font-size: 1.05rem;
+  opacity: 0.6;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* BIGGER detail */
+.feature-detail {
+  font-size: 1rem;
+  opacity: 0.8;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* BIGGER accuracy section */
+.feature-accuracy {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(30, 144, 255, 0.08);
+  border-radius: 14px;
+  border-left: 3px solid #f42009;
+  margin-bottom: 14px;
+}
+
+.accuracy-icon {
+  color: #1e90ff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* BIGGER accuracy text */
+.accuracy-text {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.feature-source {
+  font-size: 0.75rem;
+  opacity: 0.3;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.feature-line {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0303, #4a9eff);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.feature-card:hover .feature-line {
+  width: 80px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .features {
+    padding: 60px 0;
+  }
+  
+  .features-header .section-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .features-header {
+    margin-bottom: 40px;
+  }
+  
+  .features-header .section-label {
+    font-size: 0.95rem;
+    letter-spacing: 4px;
+  }
+  
+  .features-header .section-title {
+    font-size: clamp(2.8rem, 8vw, 4rem);
+  }
+  
+  .features-header .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .feature-card {
+    padding: 28px 24px;
+  }
+  
+  .feature-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    margin-bottom: 18px;
+  }
+  
+  .feature-title {
+    font-size: 1.4rem;
+  }
+  
+  .feature-description {
+    font-size: 0.95rem;
+  }
+  
+  .feature-detail {
+    font-size: 0.9rem;
+  }
+  
+  .feature-accuracy {
+    padding: 12px 16px;
+  }
+  
+  .accuracy-text {
+    font-size: 0.85rem;
+  }
+  
+  .features {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  .features-header .section-label {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+  }
+  
+  .features-header .section-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+  
+  .features-header .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .feature-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+  
+  .feature-title {
+    font-size: 1.2rem;
+  }
+  
+  .feature-description {
+    font-size: 0.85rem;
+  }
+  
+  .feature-detail {
+    font-size: 0.8rem;
+  }
+  
+  .feature-accuracy {
+    padding: 10px 14px;
+  }
+  
+  .accuracy-icon {
+    font-size: 0.95rem;
+  }
+  
+  .accuracy-text {
+    font-size: 0.8rem;
+  }
+  
+  .feature-source {
+    font-size: 0.65rem;
+  }
+  
+  .feature-line {
+    width: 40px;
+    height: 2px;
+  }
+  
+  .feature-card:hover .feature-line {
+    width: 60px;
+  }
+  
+  .features {
+    padding: 30px 0;
+  }
+}
